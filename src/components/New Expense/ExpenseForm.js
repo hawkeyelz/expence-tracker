@@ -39,6 +39,7 @@ function ExpenseForm(props) {
   };
 
   const submitHandler = (event) => {
+    setAddNewExpense(false);
     event.preventDefault();
     props.onExpenseData(userInput);
     //clear form

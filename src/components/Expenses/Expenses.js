@@ -6,15 +6,20 @@ import ExpensesList from "./ExpensesList";
 
 const Expenses = (props) => {
   const [filterValue, setFilterValue] = useState(new Date().getFullYear());
-  const [filteredExpenses, setFilteredExpenses] = useState(props.expenses);
+  const [filteredExpenses, setFilteredExpenses] = useState([]);
+  let filteredExps = props.expenses;
 
   const filteredYearHandler = (filterYearValue) => {
     setFilterValue(filterYearValue);
-    setFilteredExpenses(
-      [...props.expenses].filter(
-        (expense) => expense.date.getFullYear().toString() === filterYearValue
-      )
-    );
+    // setFilteredExpenses(
+    //   [...props.expenses].filter(
+    //     (expense) => new Date(expense.date).getFullYear().toString() === filterYearValue
+    //   )
+    // );
+    filteredExps = [...props.expenses].filter((expense)=> new Date(expense.date).getFullYear().toString() == filterYearValue);
+    setFilteredExpenses([...filteredExps]);
+    console.log([...filteredExps]);
+    setTimeout(()=>{console.log('TIMER OUT', filteredExpenses)},30)
   };
 
   return (
@@ -24,7 +29,7 @@ const Expenses = (props) => {
           onFilterYear={filteredYearHandler}
           selected={filterValue}
         />
-        <ExpensesList items={filteredExpenses}/>
+        <ExpensesList items = {filteredExpenses}/>
       </Card>
     </div>
   );

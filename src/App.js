@@ -18,8 +18,8 @@ function App() {
 
   const addExpenseHandler = (expenseData) => {
     setExpenses(() => [...expenses, expenseData]); 
-  };
 
+  };
 
   return (
     <div>

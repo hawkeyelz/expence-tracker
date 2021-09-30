@@ -2,15 +2,13 @@ import React from "react";
 import "./ExpensesList.css";
 import ExpenseItem from "./ExpenseItem";
 const ExpensesList = (props) => {
-  const expenseItems = props.items.map((expense) => (
-    <>
+  const expenseItems = props.items.map((expense) => ( 
       <ExpenseItem
-        key={expense.id}
+        key = {expense.id}
         title={expense.title}
         amount={expense.amount}
         date={expense.date}
       />
-    </>
   ));
 
   if (props.items.length ===0){
@@ -18,8 +16,7 @@ const ExpensesList = (props) => {
   }
 
   return <div>
-      {props.items.length}
-   <ul className="expenses-list"> {expenseItems}</ul>
+   {<ul className="expenses-list"> {expenseItems}</ul>}
    </div>
 };
 
