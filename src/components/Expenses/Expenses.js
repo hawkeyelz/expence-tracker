@@ -3,6 +3,7 @@ import "./Expenses.css";
 import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
 import Card from "../UI/Card";
 import ExpensesList from "./ExpensesList";
+import ExpensesChart from "./ExpensesChart";
 
 const Expenses = (props) => {
   const [filterValue, setFilterValue] = useState(new Date().getFullYear());
@@ -16,10 +17,8 @@ const Expenses = (props) => {
     //     (expense) => new Date(expense.date).getFullYear().toString() === filterYearValue
     //   )
     // );
-    filteredExps = [...props.expenses].filter((expense)=> new Date(expense.date).getFullYear().toString() == filterYearValue);
+    filteredExps = [...props.expenses].filter((expense)=> new Date(expense.date).getFullYear().toString() === filterYearValue);
     setFilteredExpenses([...filteredExps]);
-    console.log([...filteredExps]);
-    setTimeout(()=>{console.log('TIMER OUT', filteredExpenses)},30)
   };
 
   return (
@@ -29,6 +28,7 @@ const Expenses = (props) => {
           onFilterYear={filteredYearHandler}
           selected={filterValue}
         />
+        <ExpensesChart Expenses = {filteredExpenses}/>
         <ExpensesList items = {filteredExpenses}/>
       </Card>
     </div>
